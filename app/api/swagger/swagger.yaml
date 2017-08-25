@@ -121,8 +121,8 @@ definitions:
       categories:
         description: Categories that apply to the article
         type: array
-          items:
-            type: string
+        items:
+          type: string
 
 responses:
   ResponseArray:
