@@ -29,7 +29,7 @@ Stopping the Docker Image:
 
 #### Running the Authentication DB Migration Task:
 Run the Docker image (replace with your local IP address in the command):
-`docker run --name articles-worker-dev --rm -p 4001:4001 -e SERVICE_PORT=4001 -e NODE_ENV=development -e POSTGRES_DB_URL='postgres://articles_user:password@<YOUR LOCAL IP ADDRESS HERE!!!!>:5432/articles' -e RUN_CMD=MIGRATE_DB_SCHEMA --link articles-server-postgres-dev:postgres articles-server:latest`
+`docker run --name articles-worker-dev --rm -p 4000:4000 -e SERVICE_PORT=4000 -e NODE_ENV=development -e POSTGRES_DB_URL='postgres://articles_user:password@<YOUR LOCAL IP ADDRESS HERE!!!!>:5432/articles' -e RUN_CMD=MIGRATE_DB_SCHEMA --link articles-server-postgres-dev:postgres articles-server:latest`
 
 Stopping the Docker Image - DB Migrate (only necessary if there's a dev bug that causes the worker to hang):
 `docker stop articles-worker-dev`

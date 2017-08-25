@@ -2,9 +2,7 @@
  * Main entry point for the Article storage micro-service
  */
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const expressGeoIP = require('express-geoip');
-const bodyParser = require('body-parser');
 const { defineMiddleware } = require('./middleware/index');
 
 const app = express();
@@ -13,8 +11,6 @@ const app = express();
 // Middleware with latest Express format
 app.use(express.static('public'));
 app.use(expressGeoIP('US').getCountryCodeMiddleware);
-app.use(cookieParser());
-app.use(bodyParser.json());
 
 // If RUN_CMD is 'MIGRATE_SCHEMA' run worker to migrate the database schema
 if (process.env.RUN_CMD === 'MIGRATE_DB_SCHEMA') {
