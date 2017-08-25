@@ -1,0 +1,4 @@
+# Add standard gitignore files
+app/.nyc_output/
+app/coverage
+app/node_modules

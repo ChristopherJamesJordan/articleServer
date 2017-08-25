@@ -1,0 +1,3 @@
+/**
+ * Article Endpoints module
+ */

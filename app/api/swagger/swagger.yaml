@@ -1,0 +1,141 @@
+swagger: '2.0'
+
+info:
+  version: '1.0'
+  title: Articles
+  description: ''
+  license:
+    name: MIT
+    url: https://github.com/ChristopherJamesJordan/articleServer/
+host: localhost:4000
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /articles:
+    x-swagger-router-controller: articles
+    get:
+      description: Show existing articles
+      summary: Show Articles
+      tags:
+        - articles
+      operationId: getArticles
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        200:
+          $ref: '#/responses/ResponseArray'
+
+    post:
+      description: Create a new article
+      summary: Create Article
+      tags:
+        - articles
+      operationId: postArticle
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/ArticleBody'
+      responses:
+        200:
+          $ref: '#/responses/ResponseArray'
+
+
+  /articles/{id}:
+    x-swagger-router-controller: articles
+    get:
+      description: Get an article by its id
+      summary: Get Article
+      tags:
+        - articles
+      operationId: getArticle
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Id'
+      responses:
+        200:
+          $ref: '#/responses/ResponseArray'
+
+    delete:
+      description: Delete an article by its id
+      summary: Delete Article
+      tags:
+        - articles
+      operationId: deleteArticle
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/Id'
+      responses:
+        200:
+          $ref: '#/responses/ResponseArray'
+
+
+
+parameters:
+# Path
+  Id:
+    name: id
+    in: path
+    required: true
+    type: string
+    format: uuid
+    description: Resource ID
+
+# Body
+  ArticleBody:
+    name: body
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Article'
+
+definitions:
+  Article:
+    type: object
+    description: Request body for creating a permission
+    properties:
+      author:
+        description: Name of the author of the article
+        type: string
+      type:
+        description: Flag indicating celebrity (0) or normal (N) author
+        type: number
+      sex:
+        description: Gender identity of the author
+        type: string
+      birthday_ms:
+        description: Birth dateTime in milliseconds
+        type: number
+      articleText:
+        description: Text of the article
+        type: string
+      title:
+        description: Title of the article
+        type: string
+      categories:
+        description: Categories that apply to the article
+        type: array
+          items:
+            type: string
+
+responses:
+  ResponseArray:
+    description: Return an array of data responses
+    schema:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+      required:
+      - data

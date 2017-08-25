@@ -1,0 +1,49 @@
+{
+  "name": "article-storage-service",
+  "version": "1.0.0",
+  "description": "Microservice for storing article data",
+  "author": "Christopher James Jordan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ChristopherJamesJordan/articleServer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChristopherJamesJordan/articleServer/issues"
+  },
+  "homepage": "https://github.com/ChristopherJamesJordan/articleServer#readme",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.2",
+    "express-geoip": "^2.2.0",
+    "glob": "^7.1.2",
+    "js-yaml": "^3.8.4",
+    "json-refs": "^3.0.0",
+    "pg": "^6.4.1",
+    "pg-hstore": "^2.3.2",
+    "request": "^2.81.0",
+    "sequelize": "^4.1.0",
+    "swagger": "^0.7.5",
+    "swagger-tools": "^0.10.1",
+    "uuid": "^3.0.1",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0",
+    "nyc": "^11.1.0",
+    "swagger-editor": "^3.0.12"
+  },
+  "scripts": {
+    "lint": "node_modules/eslint/bin/eslint.js ./",
+    "start": "node server.js"
+  },
+  "nyc": {
+    "exclude": [
+      "config/*",
+      "coverage/*",
+    ]
+  }
+}
