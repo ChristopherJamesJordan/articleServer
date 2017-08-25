@@ -47,7 +47,6 @@ paths:
         200:
           $ref: '#/responses/ResponseArray'
 
-
   /articles/{id}:
     x-swagger-router-controller: articles
     get:
@@ -77,8 +76,6 @@ paths:
       responses:
         200:
           $ref: '#/responses/ResponseArray'
-
-
 
 parameters:
 # Path
@@ -112,7 +109,7 @@ definitions:
       sex:
         description: Gender identity of the author
         type: string
-      birthday_ms:
+      birthdayMs:
         description: Birth dateTime in milliseconds
         type: number
       articleText:

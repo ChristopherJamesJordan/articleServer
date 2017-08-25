@@ -28,7 +28,7 @@ module.exports = (sequelizeDB, modelName) => {
       allowNull: false,
     },
     articleText: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       field: 'article_text',
       allowNull: false,
     },
@@ -37,7 +37,7 @@ module.exports = (sequelizeDB, modelName) => {
       allowNull: false,
     },
     categories: {
-      type: Sequelize.STRING, // TODO update this to JSON or Array
+      type: Sequelize.ARRAY(Sequelize.TEXT),
       allowNull: false,
     },
   });

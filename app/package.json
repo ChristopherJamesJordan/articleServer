@@ -43,7 +43,7 @@
   "nyc": {
     "exclude": [
       "config/*",
-      "coverage/*",
+      "coverage/*"
     ]
   }
 }
