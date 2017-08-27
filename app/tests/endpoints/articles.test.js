@@ -1,3 +1,6 @@
+/**
+ * Articles Endpoint Module tests
+ */
 const app = require('../../server');
 const chai = require('chai');
 const request = require('supertest');
