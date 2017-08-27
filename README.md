@@ -27,7 +27,7 @@ Run the Docker image (replace with your local IP address in the command):
 Stopping the Docker Image:
 `docker stop articles-server-dev`
 
-#### Running the Authentication DB Migration Task:
+#### Running the Article Schema DB Migration Task:
 Run the Docker image (replace with your local IP address in the command):
 `docker run --name articles-worker-dev --rm -p 4000:4000 -e SERVICE_PORT=4000 -e NODE_ENV=development -e POSTGRES_DB_URL='postgres://articles_user:password@<YOUR LOCAL IP ADDRESS HERE!!!!>:5432/articles' -e RUN_CMD=MIGRATE_DB_SCHEMA --link articles-server-postgres-dev:postgres articles-server:latest`
 
