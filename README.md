@@ -34,6 +34,19 @@ Run the Docker image (replace with your local IP address in the command):
 Stopping the Docker Image - DB Migrate (only necessary if there's a dev bug that causes the worker to hang):
 `docker stop articles-worker-dev`
 
+### Testing
+
 #### Lint Testing
 Outside docker (in the app/ directory):
-`npm run lint`
+`npm run lint-tests`
+
+#### Local Testing
+Outside docker (in the app/ directory):
+`npm run unit-tests`
+
+#### Endpoint Testing
+Setup and Run the Docker Postgres image (run migration task if this is the first run)
+`docker run --name articles-server-postgres-dev -p 5432:5432 -e POSTGRES_DB=articles -e POSTGRES_USER=articles_user -e POSTGRES_PASSWORD=password -d postgres`
+
+Run test Locally in Docker (dev ENV):
+`docker run --name articles-server-dev --rm -p 4000:4000 -e SERVICE_PORT=4000 -e NODE_ENV=development -e POSTGRES_DB_URL='postgres://articles_user:password@<YOUR LOCAL IP ADDRESS HERE!!!!>:5432/articles' --link articles-server-postgres-dev:postgres articles-server:latest npm run endpoint-tests`

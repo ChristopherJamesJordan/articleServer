@@ -5,7 +5,7 @@ const swaggerTools = require('swagger-tools');
 const yaml = require('yamljs');
 
 const swaggerDoc = yaml.load('./api/swagger/swagger.yaml');
-const validateResponse = true;
+const validateResponse = false;
 
 const options = {
   controllers: './routes',

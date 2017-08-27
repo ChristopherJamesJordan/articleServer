@@ -14,8 +14,8 @@ const sendSuccess = (res, data, code = 200) => res.status(code).send(data);
 /**
  * Send error response with data
  * @param {Response} res
- * @param {Object} data
- * @param {Integer} code - Defaults to 200
+ * @param {String} msg
+ * @param {Integer} code - Defaults to 400
  * @returns {Promise}
  * */
 const sendError = (res, msg, code = 404) => res.status(code).send({ message: msg });
