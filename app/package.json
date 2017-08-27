@@ -42,7 +42,7 @@
   "scripts": {
     "lint": "node_modules/eslint/bin/eslint.js ./",
     "start": "node server.js",
-    "unit-tests": "node_modules/nyc/bin/nyc.js --all --reporter=html --reporter=text node_modules/mocha/bin/mocha $(find ./ -type f -name '*.test.js' ! -path './/node_modules/*' ! -path './node_modules/*' ! -path './/test/*' ! -path './test/*')",
+    "unit-tests": "node_modules/nyc/bin/nyc.js --all --reporter=html --reporter=text node_modules/mocha/bin/mocha $(find ./ -type f -name '*.test.js' ! -path './/node_modules/*' ! -path './node_modules/*' ! -path './/tests/*' ! -path './tests/*')",
     "endpoint-tests": "node_modules/nyc/bin/nyc.js --all --reporter=html --reporter=text node_modules/mocha/bin/mocha $(find ./tests/endpoints -type f -name '*.test.js')"
   },
   "nyc": {
