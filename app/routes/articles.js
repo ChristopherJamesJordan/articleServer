@@ -35,15 +35,15 @@ const getArticle = (req, res) => {
     },
   } = req.swagger.params;
 
-  Article.findOne({ where: { id: articleId } })
+  Article.findOne({ where: { uuid: articleId } })
     .then((article) => {
-      if (!article) return responseController.sendError(res, `No article with id ${articleId} exists.`);
-      return responseController.sendSuccess(req, { data: { articles: [article] } });
+      if (!article) return responseController.sendError(res, `No article with uuid ${articleId} exists.`);
+      return responseController.sendSuccess(res, { data: [article] });
     })
     .catch((err) => {
       // In a real-world environment, this would get logged to an error monitor
-      console.log(`Error getting article with id ${articleId}.`, err);
-      return responseController.sendError(res, `Error getting article with id ${articleId}.`, 500);
+      console.log(`Error getting article with uuid ${articleId}.`, err);
+      return responseController.sendError(res, `Error getting article with uuid ${articleId}.`, 500);
     });
 };
 
@@ -55,31 +55,17 @@ const getArticle = (req, res) => {
 */
 const postArticle = (req, res) => {
   const {
-    author: {
-      value: author,
-    },
-    type: {
-      value: type,
-    },
-    sex: {
-      value: sex,
-    },
-    birthdayMs: {
-      value: birthdayMs,
-    },
-    articleText: {
-      value: articleText,
-    },
-    title: {
-      value: title,
-    },
-    categories: {
-      value: categories,
-    },
-  } = req.swagger.params;
+    author,
+    type,
+    sex,
+    birthday,
+    articleText,
+    title,
+    categories,
+  } = req.swagger.params.body.value.Article;
 
-  return Article.create({ author, type, sex, birthdayMs, articleText, title, categories })
-    .then(article => responseController.sendSuccess(res, { data: { articles: [article] } }))
+  return Article.create({ author, type, sex, birthday, articleText, title, categories })
+    .then(article => responseController.sendSuccess(res, { data: [article] }))
     .catch((err) => {
       // In a real-world environment, this would get logged to an error monitor
       console.log(`Error creating article with name ${title}.`, err);
@@ -100,15 +86,15 @@ const deleteArticle = (req, res) => {
     },
   } = req.swagger.params;
 
-  return Article.destroy({ where: { id: articleId } })
+  return Article.destroy({ where: { uuid: articleId } })
     .then((article) => {
-      if (!article) return responseController.sendError(res, `No article with id ${articleId} exists.`);
-      return responseController.sendSuccess(res, { data: { articles: [article] } });
+      if (!article) return responseController.sendError(res, `No article with uuid ${articleId} exists.`);
+      return responseController.sendSuccess(res, { data: [{ result: article }] });
     })
     .catch((err) => {
       // In a real-world environment, this would get logged to an error monitor
-      console.log(`Error deleting article with id ${articleId}`, err);
-      return responseController.sendError(res, `Error deleting article with id ${articleId}`, 500);
+      console.log(`Error deleting article with uuid ${articleId}`, err);
+      return responseController.sendError(res, `Error deleting article with uuid ${articleId}`, 500);
     });
 };
 

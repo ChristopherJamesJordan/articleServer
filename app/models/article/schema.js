@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 
 module.exports = (sequelizeDB, modelName) => {
   const Article = sequelizeDB.define(modelName, {
-    id: {
+    uuid: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
@@ -22,9 +22,8 @@ module.exports = (sequelizeDB, modelName) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    birthdayMs: {
-      type: Sequelize.INTEGER,
-      field: 'birthday_ms',
+    birthday: {
+      type: Sequelize.DATE,
       allowNull: false,
     },
     articleText: {
@@ -37,7 +36,7 @@ module.exports = (sequelizeDB, modelName) => {
       allowNull: false,
     },
     categories: {
-      type: Sequelize.ARRAY(Sequelize.TEXT),
+      type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
     },
   });

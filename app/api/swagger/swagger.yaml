@@ -109,9 +109,10 @@ definitions:
       sex:
         description: Gender identity of the author
         type: string
-      birthdayMs:
-        description: Birth dateTime in milliseconds
-        type: number
+      birthday:
+        description: Birthday dateTime
+        type: string
+        format: date
       articleText:
         description: Text of the article
         type: string
