@@ -1,19 +1,22 @@
 /**
- * Articles Endpoint Module tests
+ * Articles Endpoint Module - POST Article tests
  */
-const app = require('../../server');
+const app = require('../../../server');
 const chai = require('chai');
 const request = require('supertest');
+const { ENDPOINTS } = require('../../constants');
 
+const ARTICLES_ENDPOINT = ENDPOINTS.ARTICLES;
 const expect = chai.expect;
 
-describe('/articles', function() {
+describe(ARTICLES_ENDPOINT, function() {
   before(function(done) {
     this.timeout(3000);
     setTimeout(done, 1000); // ensure test server has time to start
   });
 
   describe('POST @integration', function() {
+
     articleObject = {
     	Article: {
     		author: "Ashton Kutcher",
@@ -28,7 +31,7 @@ describe('/articles', function() {
 
     it('responds with a 200 response with correct params', function(done) {
       request(app)
-        .post('/articles')
+        .post(ARTICLES_ENDPOINT)
         .send(articleObject)
         .expect('Content-Type', /json/)
         .expect(200)
@@ -49,7 +52,7 @@ describe('/articles', function() {
       const badArticleObject = articleObject;
       badArticleObject.type = 'bad type';
       request(app)
-        .post('/articles')
+        .post(ARTICLES_ENDPOINT)
         .send(badArticleObject)
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -61,7 +64,7 @@ describe('/articles', function() {
       const badArticleObject = articleObject;
       badArticleObject.categories = 5;
       request(app)
-        .post('/articles')
+        .post(ARTICLES_ENDPOINT)
         .send(badArticleObject)
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -73,7 +76,7 @@ describe('/articles', function() {
       const badArticleObject = articleObject;
       badArticleObject.categories = [8, 0];
       request(app)
-        .post('/articles')
+        .post(ARTICLES_ENDPOINT)
         .send(badArticleObject)
         .end((err, res) => {
           expect(res.status).to.equal(400);

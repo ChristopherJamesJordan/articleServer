@@ -5,7 +5,7 @@ Dependencies:
 - NPM
 - Docker
 
-Install dependencies locally (not in docker, necessary because of mounting issues):
+Install dependencies locally:
 `cd app/`
 `npm install`
 
@@ -48,5 +48,5 @@ Outside docker (in the app/ directory):
 Setup and Run the Docker Postgres image (run migration task if this is the first run)
 `docker run --name articles-server-postgres-dev -p 5432:5432 -e POSTGRES_DB=articles -e POSTGRES_USER=articles_user -e POSTGRES_PASSWORD=password -d postgres`
 
-Run test Locally in Docker (dev ENV):
-`docker run --name articles-server-dev --rm -p 4000:4000 -e SERVICE_PORT=4000 -e NODE_ENV=development -e POSTGRES_DB_URL='postgres://articles_user:password@<YOUR LOCAL IP ADDRESS HERE!!!!>:5432/articles' --link articles-server-postgres-dev:postgres articles-server:latest npm run endpoint-tests`
+Build the Docker conatiner and Run endpoint-tests in Docker image (dev ENV):
+`docker build articles-server-dev . && docker run --name articles-server-dev --rm -p 4000:4000 -e SERVICE_PORT=4000 -e NODE_ENV=development -e POSTGRES_DB_URL='postgres://articles_user:password@<YOUR LOCAL IP ADDRESS HERE!!!!>:5432/articles' --link articles-server-postgres-dev:postgres articles-server:latest npm run endpoint-tests`
